@@ -155,7 +155,7 @@ echo ""
 #--progress montre l'avancement pendant le transfert
 #--stats affiche quelques statistiques de transfert de fichiers
 
-			echo `rsync -avr -e "ssh -p $portutil" --progress --stats $cheminlocal $envoyer$chemindist`
+			rsync -avr -e "ssh -p $portutil" --progress --stats $cheminlocal $envoyer$chemindist
 	
 		elif [ $incre = "n" ] || [ $incre = "N" ]
 
@@ -164,7 +164,7 @@ echo ""
 
 #-r Copie récursivement des répertoires entiers
 #-P Spécifie un port de connexion à la machine distante
-			echo `scp -r -P $portutil $cheminlocal $envoyer$chemindist` 
+			scp -r -P $portutil $cheminlocal $envoyer$chemindist
 	
 		else 
 			echo -e" \n "
@@ -249,7 +249,7 @@ echo ""
 
 		then 
 
-			echo `rsync -avr -e "ssh -p $portutil" --progress --stats $recevoir$chemindist $cheminlocal`
+			rsync -avr -e "ssh -p $portutil" --progress --stats $recevoir$chemindist $cheminlocal
 	
 	
 		elif [ $incre = "n" ] || [ $incre = "N" ]
@@ -257,7 +257,7 @@ echo ""
 		then
 
 #configuration pour le mode de récupération d'une sauvegarde simple
-			echo `scp -r -P $portutil $recevoir$chemindist $cheminlocal`
+			scp -r -P $portutil $recevoir$chemindist $cheminlocal
 	
 		else
 
