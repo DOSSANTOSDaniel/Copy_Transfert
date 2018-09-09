@@ -17,12 +17,8 @@ bleuclair='\e[1;34m'
 rougefonce='\e[0;31m'
 
 # Ici l'option -e permet l'interprétation des caractères spéciaux, le \n permet de faire un saut de ligne
-echo -e "\n $bleuclair        __________________________________ $neutre \n"
-echo    "|                                                |"
-echo -e "\n $bleuclair               Script de sauvegarde $neutre \n"
-echo    "|                                                |"
-echo -e "\n $bleuclair        __________________________________ $neutre \n"
 
+echo -e "\n $bleuclair Script de sauvegarde $neutre \n"
 
 #L'option -p permet d'associer un message à read
 #L'option -n permet de délimiter les caractères saisis 
