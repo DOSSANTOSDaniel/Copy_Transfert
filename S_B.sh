@@ -1,24 +1,49 @@
 #!/bin/bash
 
-#Ceci est un script qui servira à faire des sauvegardes entre deux machines distantes ou en local
+# TITRE: Tranferts de données
+#================================================================#
+# DESCRIPTION:
+#  Ceci est un script qui servira à faire des sauvegardes
+#  entre deux machines distantes ou en local.
+#----------------------------------------------------------------#
+# AUTEURS:
+#  Daniel DOS SANTOS < danielitto91@gmail.com >
+#----------------------------------------------------------------#
+# DATE DE CRÉATION: 27/05/2018
+#----------------------------------------------------------------#
+# VERSIONS: 2
+#----------------------------------------------------------------#
+# USAGE: ./copy_transfert
+#----------------------------------------------------------------#
+# NOTES:
+#  
+#----------------------------------------------------------------#
+# BASH VERSION: GNU bash, version 4.4.12
+#================================================================#
 
 #déclaration des variables de couleur
-
 vertclair='\e[1;32m'
-
 orange='\e[0;33m'
-
 jaune='\e[1;33m'
-
 neutre='\e[0;m'
-
 bleuclair='\e[1;34m'
-
 rougefonce='\e[0;31m'
 
-# Ici l'option -e permet l'interprétation des caractères spéciaux, le \n permet de faire un saut de ligne
-
-echo -e "\n $bleuclair Script de sauvegarde $neutre \n"
+#bannière de présentation
+cat << EOF="fin"
+ ____            _       _   
+/ ___|  ___ _ __(_)_ __ | |_ 
+\___ \ / __| '__| | '_ \| __|
+ ___) | (__| |  | | |_) | |_ 
+|____/ \___|_|  |_| .__/ \__|
+                  |_|        
+                                               _      
+ ___  __ _ _   ___   _____  __ _  __ _ _ __ __| | ___ 
+/ __|/ _` | | | \ \ / / _ \/ _` |/ _` | '__/ _` |/ _ \
+\__ \ (_| | |_| |\ V /  __/ (_| | (_| | | | (_| |  __/
+|___/\__,_|\__,_| \_/ \___|\__, |\__,_|_|  \__,_|\___|
+                           |___/                      
+fin
 
 #L'option -p permet d'associer un message à read
 #L'option -n permet de délimiter les caractères saisis 
