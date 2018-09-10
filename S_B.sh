@@ -29,6 +29,19 @@ neutre='\e[0;m'
 bleuclair='\e[1;34m'
 rougefonce='\e[0;31m'
 
+#déclaration des fonctions
+function erreur
+{	
+	echo -e" \n "
+	echo -e   "$rougefonce *************************************** $neutre"
+	echo -e   "$rougefonce *                                     * $neutre"
+	echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
+	echo -e   "$rougefonce *                                     * $neutre"
+	echo -e   "$rougefonce *************************************** $neutre"
+	
+	exit 1
+}
+
 #bannière de présentation
 cat << EOF="fin"
  ____            _       _   
@@ -73,14 +86,7 @@ then
 	sleep 0
 
 else
-	echo -e" \n "
-	echo -e   "$rougefonce *************************************** $neutre"
-	echo -e   "$rougefonce *                                     * $neutre"
-	echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-	echo -e   "$rougefonce *                                     * $neutre"
-	echo -e   "$rougefonce *************************************** $neutre"
-	
-	exit 5
+	erreur
 fi
 	
          
@@ -105,14 +111,7 @@ then
 	
 else
 
-	echo -e" \n "
-	echo -e   "$rougefonce *************************************** $neutre"
-	echo -e   "$rougefonce *                                     * $neutre"
-	echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-	echo -e   "$rougefonce *                                     * $neutre"
-	echo -e   "$rougefonce *************************************** $neutre"
-	
-	exit 1
+	erreur
 fi
 
 echo ""
@@ -188,14 +187,7 @@ echo ""
 			scp -r -P $portutil $cheminlocal $envoyer$chemindist
 	
 		else 
-			echo -e" \n "
-			echo -e   "$rougefonce *************************************** $neutre"
-			echo -e   "$rougefonce *                                     * $neutre"
-			echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-			echo -e   "$rougefonce *                                     * $neutre"
-			echo -e   "$rougefonce *************************************** $neutre"
-	
-			exit 2
+			erreur
 	
 		fi
 	
@@ -208,14 +200,7 @@ echo ""
 		exit 3
 	
 	else
-		echo -e" \n "
-		echo -e   "$rougefonce ************************************** $neutre"
-		echo -e   "$rougefonce *                                    * $neutre"
-		echo -e   "$rougefonce *Erreur de saisie veuillez recomencer* $neutre"
-		echo -e   "$rougefonce *                                    * $neutre"
-		echo -e   "$rougefonce ************************************** $neutre"
-	
-		exit 4
+		erreur
 	fi
 
 elif [ $emplacement == "R" ] || [ $emplacement == "r" ]
@@ -282,14 +267,7 @@ echo ""
 	
 		else
 
-			echo -e" \n "
-			echo -e   "$rougefonce *************************************** $neutre"
-			echo -e   "$rougefonce *                                     * $neutre"
-			echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-			echo -e   "$rougefonce *                                     * $neutre"
-			echo -e   "$rougefonce *************************************** $neutre"
-	
-		exit 0
+			erreur
 	
 		fi
 	
@@ -302,23 +280,11 @@ echo ""
 	exit 3
 	
 	else
-		echo -e" \n "
-		echo -e   "$rougefonce *************************************** $neutre"
-		echo -e   "$rougefonce *                                     * $neutre"
-		echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-		echo -e   "$rougefonce *                                     * $neutre"
-		echo -e   "$rougefonce *************************************** $neutre"
-	
-	exit 4
+		erreur
 	fi
 	
 else
-		echo -e" \n "
-		echo -e   "$rougefonce *************************************** $neutre"
-		echo -e   "$rougefonce *                                     * $neutre"
-		echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
-		echo -e   "$rougefonce *                                     * $neutre"
-		echo -e   "$rougefonce *************************************** $neutre"
+		erreur
 fi
 
 echo ""
