@@ -290,14 +290,14 @@ echo ""
 			#Archivage et compression
 			complocdist "$cheminlocal"
 			
-			rsync -avr -e "ssh -p $portutil" --progress --stats $cheminlocal $envoyer$chemindist
+			rsync -ahr -e "ssh -p $portutil" --info=progress2 --stats $cheminlocal $envoyer$chemindist
 		elif [ $incre == "n" ] || [ $incre == "N" ]
 		then
 #configuration pour le mode d'envoi simple 
 #-r Copie récursivement des répertoires entiers
 #-P Spécifie un port de connexion à la machine distante
 			complocdist "$cheminlocal"
-			scp -r -P $portutil $cheminlocal $envoyer$chemindist
+			scp -pr -P $portutil $cheminlocal $envoyer$chemindist
 		else 
 			erreur
 		fi
@@ -334,11 +334,11 @@ echo ""
 #exécution de l'opération
 		if [ $incre = "o" ] || [ $incre = "O" ]
 		then 
-			rsync -avr -e "ssh -p $portutil" --progress --stats $recevoir$chemindist $cheminlocal
+			rsync -ahr -e "ssh -p $portutil" --info=progress2 --stats $recevoir$chemindist $cheminlocal
 		elif [ $incre = "n" ] || [ $incre = "N" ]
 		then
 #configuration pour le mode de récupération d'une sauvegarde simple
-			scp -r -P $portutil $recevoir$chemindist $cheminlocal
+			scp -pr -P $portutil $recevoir$chemindist $cheminlocal
 		else
 			erreur
 		fi
