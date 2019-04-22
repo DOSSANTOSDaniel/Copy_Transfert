@@ -21,7 +21,7 @@
 #  1 > Mettre un "/" à la fin du chemin si c'est un répertoire
 #  2 > Ne pas mettre de "/" à la fin du chemin si c'est un fichier
 #
-#  Il est possible de compresser les données sur la machine 
+#  Il est possible de compresser les données sur la machine
 #  locale avant d'envoyer les données sur la machine distante,
 #  l'inverse n'est pas possible sur cette version du script.
 #----------------------------------------------------------------#
@@ -37,7 +37,7 @@ dat='date_'$(date +%F'_heure_'%H-%M)
 #Nom login
 nom=$(logname)
 
-#Déclaration du port par défaut 
+#Port par défaut 
 portutil="22"
 
 #déclaration des variables de couleur
@@ -52,14 +52,14 @@ rougefonce='\e[0;31m'
 #---------------------------
 
 function erreur
-{	
+{
 	echo -e" \n "
 	echo -e   "$rougefonce *************************************** $neutre"
 	echo -e   "$rougefonce *                                     * $neutre"
 	echo -e   "$rougefonce *Erreur de saisie veuillez recommencer* $neutre"
 	echo -e   "$rougefonce *                                     * $neutre"
 	echo -e   "$rougefonce *************************************** $neutre"
-	
+
 	suivant
 }
 
@@ -68,9 +68,9 @@ function info
         echo -e "$jaune
          ______________
         ||             |
-        || 
+        ||
         || >_ $1
-        || 
+        ||
         ||_____________|
         |______________|
          \\== = = = = = =\\
@@ -177,18 +177,18 @@ do
 clear
 #bannière de présentation
 cat << "EOF"
- ____            _       _   
-/ ___|  ___ _ __(_)_ __ | |_ 
+ ____            _       _
+/ ___|  ___ _ __(_)_ __ | |_
 \___ \ / __| '__| | '_ \| __|
- ___) | (__| |  | | |_) | |_ 
+ ___) | (__| |  | | |_) | |_
 |____/ \___|_|  |_| .__/ \__|
-                  |_|        
-                                               _      
- ___  __ _ _   ___   _____  __ _  __ _ _ __ __| | ___ 
+                  |_|
+                                               _
+ ___  __ _ _   ___   _____  __ _  __ _ _ __ __| | ___
 / __|/ _` | | | \ \ / / _ \/ _` |/ _` | '__/ _` |/ _ \
 \__ \ (_| | |_| |\ V /  __/ (_| | (_| | | | (_| |  __/
 |___/\__,_|\__,_| \_/ \___|\__, |\__,_|_|  \__,_|\___|
-                           |___/                      
+                           |___/
 EOF
 echo -e "\n"
 #Ici le nom d'utilisateur sera utile pour configurer les logs
@@ -213,14 +213,14 @@ exec 2>&1
 
 #L'option -n permet de délimiter les caractères saisis
 echo ""
-read -p "Voulez-vous faire une sauvegarde en local ?  ([O] [N]) ==> : " -n 1 loc	
+read -p "Voulez-vous faire une sauvegarde en local ?  ([O] [N]) ==> : " -n 1 loc
 echo ""
-	
+
 if [ $loc == "O" ] || [ $loc == "o" ]
 then
 	read -p "Chemin source ==> :  " sources
 	read -p "Chemin cible ==> :  " cibles
-	
+
 #L'option -i permet d'interroger l'utilisateur avant d'écraser des fichiers réguliers existants
 #L'option -v affiche le nom de chaque fichier avant de le copier.
 #L'option -R copie récursivement les répertoires
@@ -240,12 +240,12 @@ read -p " Utilisez-vous un port, autre que le 22 ? ([O] [N]) ==> :  " -n 1 port
 echo ""
 
 if [ $port == "O" ] || [ $port == "o" ]
-then 
+then
 	read -p "Port utilisé ==> :  " -n 5 portutil
 elif [ $port == "N" ] || [ $port == "n" ]
 then
 	clear
-	info "Port par defaut: 22"	
+	info "Port par defaut: 22"
 else
 	erreur
 fi
@@ -254,14 +254,14 @@ echo ""
 read -p "Voulez-vous envoyer ou recevoir des données ? ([E] [R]) ==> :  " -n 1 emplacement
 echo ""
 clear
-#vérification du choix du technicien d'envoyer le fichier ou de le recevoir 
+#vérification du choix du technicien d'envoyer le fichier ou de le recevoir
 if [ $emplacement == "E" ] || [ $emplacement == "e" ]
-then 
+then
 	ipid
 	envoyer="$idmachinedist@$ipadressedist:"
 	read -p "Chemin des données à envoyer ==> : " cheminlocal
 	read -p "Chemin cible de sauvegarde sur la machine distante ==> : " chemindist
-	
+
 	echo ""
 	read -p "Voulez-vous une sauvegarde incrémentielle? ([O] [N]) ==> : " -n 1 incre
 #affiche le récapitulatif de l'opération
@@ -278,31 +278,31 @@ echo ""
 	then
 #exécution de l'opération
 		if [ $incre == "o" ] || [ $incre == "O" ]
-		then 
+		then
 #configuration pour le mode d'envoi incrémentiel
-	
+
 #-a c'est le mode archivage
-#-v c'est le mode verbeux 
+#-v c'est le mode verbeux
 #-r copie récursive des répertoires
 #-e indique un shell distant et ses option ici nous indiquant que la connexion se fait en ssh et nous indiquons un port
 #--progress montre l'avancement pendant le transfert
 #--stats affiche quelques statistiques de transfert de fichiers
 			#Archivage et compression
 			complocdist "$cheminlocal"
-			
+
 			rsync -ahr -e "ssh -p $portutil" --info=progress2 --stats $cheminlocal $envoyer$chemindist
 		elif [ $incre == "n" ] || [ $incre == "N" ]
 		then
-#configuration pour le mode d'envoi simple 
+#configuration pour le mode d'envoi simple
 #-r Copie récursivement des répertoires entiers
 #-P Spécifie un port de connexion à la machine distante
 			complocdist "$cheminlocal"
 			scp -pr -P $portutil $cheminlocal $envoyer$chemindist
-		else 
+		else
 			erreur
 		fi
 	elif [ $ok == "N" ] || [ $ok == "n" ]
-	then 
+	then
 		clear
 		info "Merci de relancer le script!"
 		suivant
@@ -333,7 +333,7 @@ echo ""
 	then
 #exécution de l'opération
 		if [ $incre = "o" ] || [ $incre = "O" ]
-		then 
+		then
 			rsync -ahr -e "ssh -p $portutil" --info=progress2 --stats $recevoir$chemindist $cheminlocal
 		elif [ $incre = "n" ] || [ $incre = "N" ]
 		then
