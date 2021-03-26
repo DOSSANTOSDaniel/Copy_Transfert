@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# TITRE: Tranferts de données
+# TITRE: Transfert de données
 #================================================================#
 # DESCRIPTION:
 #  Ceci est un script qui servira à faire des sauvegardes
@@ -125,9 +125,9 @@ case $comp in
 	[oO]|"oui"|"OUI")
 		if tar -zcvpf $1$dat.tar.gz $1
 		then
-			echo -e "\nCompression terminé\n"
+			echo -e "\n Compression terminé \n"
 		else
-			echo -e "\nErreur de la Compression\n"
+			echo -e "\n Erreur de la Compression \n"
 			suivant
 		fi
 		che="$(dirname $1)"
@@ -193,7 +193,7 @@ EOF
 echo -e "\n"
 #Ici le nom d'utilisateur sera utile pour configurer les logs
 #L'option -p permet d'associer un message à read
-read -p "Etes vous connecté sous << $(logname) >> ? ([O] [N]) ==> : " choix
+read -p "Êtes vous connecté sous << $(logname) >> ? ([O] [N]) ==> : " choix
 if [ $choix == "N" ] || [ $choix == "n" ]
 then
 	echo ""
@@ -245,7 +245,7 @@ then
 elif [ $port == "N" ] || [ $port == "n" ]
 then
 	clear
-	info "Port par defaut: 22"
+	info "Port par défaut: 22"
 else
 	erreur
 fi
